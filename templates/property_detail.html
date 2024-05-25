@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Detail - Rentify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h1>Property Detail</h1>
+    <p>email: {{ property.email }}</p>
+    <p>Place: {{ property.place }}</p>
+    <p>Area: {{ property.area }}</p>
+    <p>Bedrooms: {{ property.bedrooms }}</p>
+    <p>Bathrooms: {{ property.bathrooms }}</p>
+    <p>Nearby Hospitals: {{ property.nearby_hospitals }}</p>
+    <p>Nearby Colleges: {{ property.nearby_colleges }}</p>
+</body>
+</html>
