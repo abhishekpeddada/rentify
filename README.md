@@ -3,6 +3,7 @@
 In developing the Rentify application, we utilized a combination of technologies to create a robust and user-friendly platform for property management and browsing. Here's a brief overview of the technologies used:
 
 Backend Development:
+
 Flask: We chose Flask as the backend web framework due to its simplicity, flexibility, and ease of integration with other Python libraries and frameworks. Flask provided a solid foundation for building RESTful APIs and handling user authentication and data management.
     
 SQLAlchemy: SQLAlchemy was used as the ORM (Object-Relational Mapping) tool to interact with the database. It allowed us to work with database models in an object-oriented manner and perform CRUD operations seamlessly.
