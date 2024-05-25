@@ -4,15 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
     <title>Buyer Dashboard</title>
 </head>
 <body>
     {% include 'navbar.html' %}
-    <h1>Properties Available for Rent</h1>
-    <ul>
-        {% for property in properties %}
-        <a href="{{ url_for('property_detail', property_id=property.id) }}">{{ property.place }}</a>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-3 mb-lg-5">
+                <div class="overflow-hidden card table-nowrap table-card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Properties Available for Rent</h5>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            {% for property in properties %}
+                            <tr class="align-middle">
+                                <td>
+                                    {{ property.place }}
+                                </td>
+                                <td class="text-end">
+                                    <button><a href="{{ url_for('property_detail', property_id=property.id) }}">I am intrested</a></button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -1,8 +1,16 @@
 <nav class="navbar">
     <ul class="nav-links">
-        <li><a href="{{ url_for('seller_dashboard') }}">Seller Dashboard</a></li>
-        <li><a href="{{ url_for('buyer_dashboard') }}">Buyer Dashboard</a></li>
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('register') }}">Register</a></li>
+
+        {% if session.get('username') %}
+        <!-- Show username if user is logged in -->
+        <li><a href="#">{{ session['username'] }}</a></li>
+        <!-- Show logout link if user is logged in -->
         <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    {% else %}
+    <li><a href="{{ url_for('login') }}">Login</a></li>
+    {% endif %}
     </ul>
     <button class="nav-toggle">&#9776;</button>
 </nav>

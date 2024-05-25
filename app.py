@@ -28,7 +28,7 @@ def register():
         user_type = request.form['user_type']
         password = request.form['password']
         print("register",password)
-        
+        session["username"] = first_name
         # Hash the password
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
 
@@ -56,6 +56,7 @@ def login():
             hashed_password = hashlib.sha256(password.encode()).hexdigest()
             if user.password == hashed_password:
                 # Redirect based on user type
+                session["username"] = user.first_name
                 session['user_email'] = user.email
                 session['user_type'] = user.user_type
                 if user.user_type == 'seller':
