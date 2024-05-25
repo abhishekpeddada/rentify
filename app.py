@@ -85,31 +85,30 @@ def seller_dashboard():
             # Handle case when user is not logged in
             return redirect(url_for('login'))
     return redirect(url_for('login'))
+
 @app.route('/edit_property')
-def edit_property(property_id):
-    user_email = session['user_email']
-    if user_email in session['user_email']:
-        property = db_session.query(Property).filter(Property.id == property_id).first()
-        if property and property.email == session['user_email']:
-            if request.method == 'POST':
-                # Update property details
-                property.place = request.form['place']
-                property.area = request.form['area']
-                property.bedrooms = request.form['bedrooms']
-                property.bathrooms = request.form['bathrooms']
-                property.nearby_hospitals = request.form['nearby_hospitals']
-                property.nearby_colleges = request.form['nearby_colleges']
-                db_session.commit()
-                flash('Property updated successfully')
-                return redirect(url_for('seller_dashboard'))
-            return render_template('property_detail.html', property=property)
-        else:
+def edit_property():
+    return render_template('edit_property.html')
+
+@app.route('/property_submit/<int:property_id>',methods=['POST'])
+def property_submit(property_id):
+    email = session['user_email']
+    property = db_session.query(Property).filter(Property.email == email).first()
+    if request.method == 'POST':
+        property.email = request.form['email']
+        property.place = request.form['place']
+        property.area = request.form['area']
+        property.bedrooms = request.form['bedrooms']
+        property.bathrooms = request.form['bathrooms']
+        property.nearby_hospitals = request.form['nearby_hospitals']
+        property.nearby_colleges = request.form['nearby_colleges']
+        db_session.commit()
+        flash('Property updated successfully')
+        return render_template('property_detail.html', property=property)
+    else:
             # Property not found or does not belong to the logged-in seller
             flash('Property not found')
-            return redirect(url_for('seller_dashboard'))
-    else:
-        # Redirect to login page if user is not logged in
-        return redirect(url_for('login'))
+            return ("Property not found")
 
 @app.route('/delete_property/<int:property_id>', methods=['GET'])
 def delete_property(property_id):

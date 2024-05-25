@@ -6,6 +6,11 @@
         {% if session.get('username') %}
         <!-- Show username if user is logged in -->
         <li><a href="#">{{ session['username'] }}</a></li>
+        {% if session['user_type'] == "seller" %}
+        <li><a href="{{ url_for('seller_dashboard') }}">Dashboard</a></li>
+        {% else %}
+        <li><a href="{{ url_for('buyer_dashboard') }}">Places for Rent</a></li>
+        {% endif %}
         <!-- Show logout link if user is logged in -->
         <li><a href="{{ url_for('logout') }}">Logout</a></li>
     {% else %}
