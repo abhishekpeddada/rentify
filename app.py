@@ -165,5 +165,9 @@ def logout():
     session.clear()  # Clear the session data
     return redirect(url_for('login'))
 
+@app.route('/print'):
+def print():
+    print("hello world")
+
 if __name__ == '__main__':
     app.run(debug=True)
